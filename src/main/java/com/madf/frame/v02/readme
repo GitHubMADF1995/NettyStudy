@@ -1,0 +1,23 @@
+添加ClientFrame
+    实现启动ClientFrame就启动Client端，并连接Server端
+    初始化Channel，进行传输
+    添加ClientFrame的动作监听，输入文字，即调用send发送消息到服务端
+    ClientFrame做成单例，服务端接收到客户端的消息后，更新ClientFrame中的ta
+    ClientFrame优雅的关闭，通知Server端
+
+添加ServerFrame
+    ServerFrame做成单例
+    实现启动ServerFrame就启动Server端，并在启动成功后给出提示
+    接收到Client发送的消息后，同时显示在ServerFrame中，并将消息回复给Client端
+    Server做异常处理，删除clients中保存的channel，实现客户端优雅的关闭
+    ServerFrame优雅的关闭，发送消息给各个客户端要关闭的信息后关闭Server
+
+
+实现坦克信息在传输时的编码和解码
+    定义TankMsg的x, y
+    TankMsgEncoder负责编码
+    TankMsgDecoder负责解码
+    将Encoder加入客户端的Channel处理链
+    将Decoder加入服务端的Channel处理链
+    在客户端channelActive的时候发送一个TankMsg
+    观察服务器是否正确接收
